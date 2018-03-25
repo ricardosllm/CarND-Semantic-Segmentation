@@ -24,6 +24,7 @@ class DLProgress(tqdm):
 def maybe_download_pretrained_vgg(data_dir):
     """
     Download and extract pretrained vgg model if it doesn't exist
+
     :param data_dir: Directory to download the model to
     """
     vgg_filename = 'vgg.zip'
@@ -33,7 +34,8 @@ def maybe_download_pretrained_vgg(data_dir):
         os.path.join(vgg_path, 'variables/variables.index'),
         os.path.join(vgg_path, 'saved_model.pb')]
 
-    missing_vgg_files = [vgg_file for vgg_file in vgg_files if not os.path.exists(vgg_file)]
+    missing_vgg_files = \
+      [vgg_file for vgg_file in vgg_files if not os.path.exists(vgg_file)]
     if missing_vgg_files:
         # Clean vgg dir
         if os.path.exists(vgg_path):
@@ -61,14 +63,19 @@ def maybe_download_pretrained_vgg(data_dir):
 def gen_batch_function(data_folder, image_shape):
     """
     Generate function to create batches of training data
+
     :param data_folder: Path to folder that contains all the datasets
     :param image_shape: Tuple - Shape of image
+
     :return:
     """
+
     def get_batches_fn(batch_size):
         """
         Create batches of training data
+
         :param batch_size: Batch Size
+
         :return: Batches of training data
         """
         image_paths = glob(os.path.join(data_folder, 'image_2', '*.png'))
@@ -84,8 +91,10 @@ def gen_batch_function(data_folder, image_shape):
             for image_file in image_paths[batch_i:batch_i+batch_size]:
                 gt_image_file = label_paths[os.path.basename(image_file)]
 
-                image = scipy.misc.imresize(scipy.misc.imread(image_file), image_shape)
-                gt_image = scipy.misc.imresize(scipy.misc.imread(gt_image_file), image_shape)
+                image = scipy.misc.imresize(
+                    scipy.misc.imread(image_file), image_shape)
+                gt_image = scipy.misc.imresize(
+                    scipy.misc.imread(gt_image_file), image_shape)
 
                 gt_bg = np.all(gt_image == background_color, axis=2)
                 gt_bg = gt_bg.reshape(*gt_bg.shape, 1)
@@ -101,12 +110,14 @@ def gen_batch_function(data_folder, image_shape):
 def gen_test_output(sess, logits, keep_prob, image_pl, data_folder, image_shape):
     """
     Generate test output using the test images
+
     :param sess: TF session
     :param logits: TF Tensor for the logits
     :param keep_prob: TF Placeholder for the dropout keep robability
     :param image_pl: TF Placeholder for the image placeholder
     :param data_folder: Path to the folder that contains the datasets
     :param image_shape: Tuple - Shape of image
+
     :return: Output for for each test image
     """
     for image_file in glob(os.path.join(data_folder, 'image_2', '*.png')):
@@ -125,7 +136,8 @@ def gen_test_output(sess, logits, keep_prob, image_pl, data_folder, image_shape)
         yield os.path.basename(image_file), np.array(street_im)
 
 
-def save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, keep_prob, input_image):
+def save_inference_samples(runs_dir, data_dir, sess, image_shape,
+                           logits, keep_prob, input_image):
     # Make folder for current run
     output_dir = os.path.join(runs_dir, str(time.time()))
     if os.path.exists(output_dir):
@@ -135,6 +147,7 @@ def save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, keep_p
     # Run NN on test images and save them to HD
     print('Training Finished. Saving test images to: {}'.format(output_dir))
     image_outputs = gen_test_output(
-        sess, logits, keep_prob, input_image, os.path.join(data_dir, 'data_road/testing'), image_shape)
+        sess, logits, keep_prob, input_image,
+        os.path.join(data_dir, 'data_road/testing'), image_shape)
     for name, image in image_outputs:
         scipy.misc.imsave(os.path.join(output_dir, name), image)

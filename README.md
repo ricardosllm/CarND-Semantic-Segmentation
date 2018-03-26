@@ -1,4 +1,23 @@
 # Semantic Segmentation
+
+### Results
+
+#### Good examples:
+
+| | | |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/um_000026.png">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/um_000003.png">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/um_000012.png">|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/uu_000051.png">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/um_000061.png">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/umm_000011.png">|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/umm_000015.png">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/umm_000020.png">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/umm_000028.png">|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/umm_000034.png">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/umm_000076.png">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/uu_000022.png">|
+
+#### Bad examples:
+
+| | | |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/um_000073.png">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/um_000078.png">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/um_000094.png">|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/umm_000022.png">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/umm_000068.png">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="runs/1521977825.4645545/umm_000069.png">|
+
 ### Introduction
 In this project, you'll label the pixels of a road in images using a Fully Convolutional Network (FCN).
 
